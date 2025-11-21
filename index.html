@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberDev - Sites Profissionais de Alta Performance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-green: #00ff00;
+            --dark-bg: #0a0a0a;
+            --medium-bg: #111;
+            --light-text: #f0f0f0;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--neon-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .cta-button {
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        /* Hero Section with Hacker */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 10;
+            padding-right: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hacker-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 100%;
+        }
+
+        .hacker {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+
+        .hacker-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #111122, #000011);
+            border-radius: 40% 40% 50% 50%;
+            overflow: hidden;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 0, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .hat {
+            position: absolute;
+            width: 120%;
+            height: 80px;
+            background: #000;
+            top: -30px;
+            left: -10%;
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .hat-brim {
+            position: absolute;
+            width: 140%;
+            height: 20px;
+            background: #000;
+            top: 40px;
+            left: -20%;
+            border-radius: 50%;
+        }
+
+        .mask {
+            position: absolute;
+            width: 80%;
+            height: 50%;
+            background: #050505;
+            top: 25%;
+            left: 10%;
+            border-radius: 40% 40% 50% 50%;
+            box-shadow: 
+                inset 0 0 20px rgba(0, 0, 0, 0.9),
+                0 0 10px rgba(0, 255, 0, 0.2);
+        }
+
+        .eyes-container {
+            position: absolute;
+            width: 60%;
+            height: 30%;
+            top: 35%;
+            left: 20%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .eye {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background: #000;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #003300;
+            box-shadow: 
+                inset 0 0 20px #001100,
+                0 0 15px rgba(0, 255, 0, 0.4);
+        }
+
+        .pupil {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.05s linear;
+            box-shadow: 
+                0 0 15px var(--neon-green),
+                inset 0 0 10px #00aa00;
+        }
+
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 60px 20px rgba(0, 255, 0, 0.3);
+            z-index: -1;
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 0, 0.7);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+            animation: scan 3s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: var(--medium-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2 span {
+            color: var(--neon-green);
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #aaa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0, 255, 0, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 255, 0, 0.1);
+            border-color: rgba(0, 255, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: var(--dark-bg);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--neon-green);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: "MAIS POPULAR";
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 255, 0, 0.1);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--neon-green);
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--neon-green);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23003300"/><path d="M0 0L100 100M100 0L0 100" stroke="%23005500" stroke-width="1"/></svg>');
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--neon-green);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+        
+        .cursor-ring {
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--neon-green);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.1s ease-out;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+                height: auto;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span>CyberDev</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#pricing">Preços</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Solicitar Orçamento</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="scan-line"></div>
+        <div class="container" style="display: flex; align-items: center; height: 100%;">
+            <div class="hero-content">
+                <h1>Sites que <span>convertem visitantes em clientes</span></h1>
+                <p>Criamos sites profissionais, responsivos e otimizados para SEO que destacam seu negócio na internet e geram resultados reais.</p>
+                <a href="#contact" class="cta-button" style="padding: 15px 40px; font-size: 1.1rem;">Falar com Especialista</a>
+                <div style="margin-top: 30px; display: flex; align-items: center;">
+                    <div style="display: flex; margin-right: 20px;">
+                        <span style="color: var(--neon-green); margin-right: 5px;">✓</span> Design Profissional
+                    </div>
+                    <div style="display: flex; margin-right: 20px;">
+                        <span style="color: var(--neon-green); margin-right: 5px;">✓</span> Otimizado para SEO
+                    </div>
+                    <div style="display: flex;">
+                        <span style="color: var(--neon-green); margin-right: 5px;">✓</span> Responsivo
+                    </div>
+                </div>
+            </div>
+            <div class="hacker-container">
+                <div class="glow"></div>
+                <div class="hacker" id="hacker">
+                    <div class="hacker-face">
+                        <div class="hat"></div>
+                        <div class="hat-brim"></div>
+                        <div class="mask">
+                            <div class="eyes-container">
+                                <div class="eye">
+                                    <div class="pupil" id="left-pupil"></div>
+                                </div>
+                                <div class="eye">
+                                    <div class="pupil" id="right-pupil"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos <span>Serviços</span></h2>
+                <p>Soluções completas para sua presença digital</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Sites Institucionais</h3>
+                    <p>Desenvolvemos sites modernos e profissionais que representam sua marca e convertem visitantes em clientes.</p>
+                    <a href="#contact" class="cta-button">Saiba Mais</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3>Lojas Virtuais</h3>
+                    <p>Criamos e-commerces completos e seguros para você vender seus produtos 24 horas por dia, 7 dias por semana.</p>
+                    <a href="#contact" class="cta-button">Saiba Mais</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Sites Responsivos</h3>
+                    <p>Seu site perfeito em qualquer dispositivo: celular, tablet e desktop com experiência de usuário otimizada.</p>
+                    <a href="#contact" class="cta-button">Saiba Mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Planos e <span>Preços</span></h2>
+                <p>Investimento acessível com retorno garantido</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Site Básico</h3>
+                    <div class="price">R$ 50<span>/único</span></div>
+                    <ul class="pricing-features">
+                        <li>Até 5 páginas</li>
+                        <li>Design responsivo</li>
+                        <li>Formulário de contato</li>
+                        <li>Otimização básica para SEO</li>
+                        <li>Integração com redes sociais</li>
+                        <li>Suporte por 30 dias</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Escolher Plano</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Site Profissional</h3>
+                    <div class="price">R$ 200<span>/único</span></div>
+                    <ul class="pricing-features">
+                        <li>Até 10 páginas</li>
+                        <li>Design personalizado</li>
+                        <li>Otimização avançada para SEO</li>
+                        <li>Integração com Google Analytics</li>
+                        <li>Blog integrado</li>
+                        <li>Suporte por 60 dias</li>
+                        <li>Treinamento para gestão</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Escolher Plano</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>E-commerce</h3>
+                    <div class="price">R$ 350<span>/único</span></div>
+                    <ul class="pricing-features">
+                        <li>Catálogo de produtos ilimitado</li>
+                        <li>Carrinho de compras</li>
+                        <li>Integração com meios de pagamento</li>
+                        <li>Painel administrativo</li>
+                        <li>Relatórios de vendas</li>
+                        <li>Suporte por 90 dias</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Escolher Plano</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Pronto para levar seu negócio para o próximo nível?</h2>
+            <p>Entre em contato agora mesmo e receba uma consultoria gratuita sobre como podemos criar o site perfeito para suas necessidades.</p>
+            <a href="https://wa.me/5591980427720?text=Olá! Gostaria de solicitar um orçamento para um site." class="cta-button" style="padding: 15px 40px; font-size: 1.1rem;">
+                Falar com Especialista no WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CyberDev</h3>
+                    <p style="color: #aaa; margin-bottom: 20px;">Criamos sites que convertem visitantes em clientes e impulsionam seu negócio.</p>
+                    <div style="display: flex;">
+                        <a href="#" style="color: #aaa; margin-right: 15px; font-size: 1.2rem;">📱</a>
+                        <a href="#" style="color: #aaa; margin-right: 15px; font-size: 1.2rem;">📧</a>
+                        <a href="#" style="color: #aaa; margin-right: 15px; font-size: 1.2rem;">💼</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Serviços</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Sites Institucionais</a></li>
+                        <li><a href="#">Lojas Virtuais</a></li>
+                        <li><a href="#">Landing Pages</a></li>
+                        <li><a href="#">Manutenção de Sites</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Portfólio</a></li>
+                        <li><a href="#">Depoimentos</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li>📧 contato:Skilerilusoria@gmail.com</li>
+                        <li>📱 (11) 99999-9999</li>
+                        <li>📍 São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CyberDev. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fazer o hacker seguir o mouse
+        const hacker = document.getElementById('hacker');
+        
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            const moveX = (x - centerX) / 50;
+            const moveY = (y - centerY) / 50;
+            
+            hacker.style.transform = `rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
+        });
+
+        // Fazer os olhos seguirem o mouse
+        const leftPupil = document.getElementById('left-pupil');
+        const rightPupil = document.getElementById('right-pupil');
+        
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            // Calcular posição relativa do mouse em relação aos olhos
+            const hackerRect = document.querySelector('.hacker-container').getBoundingClientRect();
+            const hackerCenterX = hackerRect.left + hackerRect.width / 2;
+            const hackerCenterY = hackerRect.top + hackerRect.height / 2;
+            
+            // Calcular deslocamento dos olhos (limitado para não sair da área do olho)
+            const eyeOffsetX = (x - hackerCenterX) / 50;
+            const eyeOffsetY = (y - hackerCenterY) / 50;
+            
+            // Limitar o movimento das pupilas
+            const limitedOffsetX = Math.max(-10, Math.min(10, eyeOffsetX));
+            const limitedOffsetY = Math.max(-8, Math.min(8, eyeOffsetY));
+            
+            // Aplicar movimento às pupilas
+            leftPupil.style.transform = `translate(calc(-50% + ${limitedOffsetX}px), calc(-50% + ${limitedOffsetY}px))`;
+            rightPupil.style.transform = `translate(calc(-50% + ${limitedOffsetX}px), calc(-50% + ${limitedOffsetY}px))`;
+        });
+
+        // Cursor personalizado
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+            
+            cursorRing.style.left = e.clientX + 'px';
+            cursorRing.style.top = e.clientY + 'px';
+        });
+        
+        document.addEventListener('mousedown', () => {
+            cursorRing.style.transform = 'translate(-50%, -50%) scale(0.7)';
+        });
+        
+        document.addEventListener('mouseup', () => {
+            cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
